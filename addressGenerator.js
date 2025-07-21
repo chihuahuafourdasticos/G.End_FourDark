@@ -19,8 +19,8 @@ const defaultAddresses = {
     16: `Itatiba\n Endereço 16\n Cep: 13256490\n Cidade: Itatiba\n Estado: SP\n Bairro: Vila Brasileira\n Endereço: Rua dos Operarios\n Numero: 110\n Complemento: Terça e quinta não entrar antes das 13 , Entregar Marcio`,
     17: `Santa Bárbara d'Oeste\n Endereço 17\n Cep: 13456132\n Cidade: Santa Bárbara d'Oeste\n Estado: SP\n Bairro: Distrito Industrial I\n Endereço: Rua Frederico Amadeo Covolan\n Numero: 270\n Complemento: Entregar Anselmo`,
     18: `Itatiba\n Endereço 18\n Cep: 13255057\n Cidade: Itatiba\n Estado: SP\n Bairro: Não especificado (ou Residencial Beija Flor)\n Endereço: Rua Antenor José Momentel\n Numero: S/N\n Complemento: Bloco 21 apto 23 Condomínio residencial Beija Flor Fase B, Entregar Edna`,
-    'e1': `Seropedica - Casa\n Endereço 1\n Cep: 23894330\n Cidade: Seropedica\n Estado: rj\n Bairro: Boa Esperança / coqueiral / mutirão\n Endereço: Rua Tacaratu Marques\n Numero: 6\n Complemento: sem xxxxxxxxxxx`,
-    'e2': `Seropedica - Girassol\n Endereço 2\n Cep: 23894338\n Cidade: Seropedica\n Estado: rj\n Bairro: Boa Esperança\n Endereço: Rua Marquês de Valência\n Numero: 228\n Complemento: Para Cátia / Marcelo xxxxxxxxxxxxx`,
+    'casa': `Seropedica - Casa\n Endereço 1\n Cep: 23894330\n Cidade: Seropedica\n Estado: rj\n Bairro: Boa Esperança / coqueiral / mutirão\n Endereço: Rua Tacaratu Marques\n Numero: 6\n Complemento: sem xxxxxxxxxxx`,
+    'aquarela': `Seropedica - Girassol\n Endereço 2\n Cep: 23894338\n Cidade: Seropedica\n Estado: rj\n Bairro: Boa Esperança\n Endereço: Rua Marquês de Valência\n Numero: 228\n Complemento: Para Cátia / Marcelo xxxxxxxxxxxxx`,
     'e3': `Seropedica - Vó\n Endereço 3\n Cep: 23895330\n Cidade: Seropedica\n Estado: rj\n Bairro: Fazenda Caxias\n Endereço: Rua Isidro Borges\n Numero: 123\n Complemento: Ao Lado da Igreja Congregacional xxxxxxxxxxxxx`,
     'e4': `Seropedica - Escola\n Endereço 4\n Cep: 23895075\n Cidade: Seropedica\n Estado: rj\n Bairro: Fazenda Caxias\n Endereço: Rua Josino Fernades Nunes\n Numero: 447\n Complemento: Creche Escola Aquarela`
 };
