@@ -26,7 +26,7 @@ const defaultAddresses = {
 };
 const defaultLockedBalls = ['4', '18'];
 const defaultBallMeta = {
-    'e1': { display: '🏠', title: 'Endereço Casa' },
+    'casa': { display: '🏠', title: 'Endereço Casa' },
     'e2': { display: '🌻', title: 'Endereço Girassol' },
     'e3': { display: '👵', title: 'Endereço Vó' },
     'e4': { display: '🏫', title: 'Endereço Escola' }
