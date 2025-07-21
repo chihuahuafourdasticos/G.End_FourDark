@@ -851,14 +851,60 @@ body {
         padding: 10px;
         border: 1px solid #eee;
         border-radius: 4px;
-        white-space: pre-wrap; /* Preserve whitespace and wrap */
-        max-height: 200px; /* Limit height and add scroll */
+        max-height: 250px; /* Limit height and add scroll */
         overflow-y: auto;
-        word-wrap: break-word; /* Break long words */
         font-size: 0.9em;
         color: #333;
         transition: background-color 0.3s, border-color 0.3s, color 0.3s;
      }
+
+    .db-record-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px 5px;
+        border-bottom: 1px dashed #ddd;
+        transition: background-color 0.2s, border-color 0.3s;
+    }
+
+    .db-record-item:last-child {
+        border-bottom: none;
+    }
+
+    .db-record-item:hover {
+        background-color: #f0f8ff;
+    }
+
+    .db-record-text {
+        flex-grow: 1;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin: 0;
+        padding-right: 10px;
+        font-family: inherit; /* Inherit font from parent */
+    }
+
+    .db-record-delete-btn {
+        flex-shrink: 0;
+        background-color: #f44336; /* Red */
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        padding: 0;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .db-record-delete-btn:hover {
+        background-color: #d32f2f; /* Darker red */
+        transform: scale(1.1);
+    }
 
     #db-stats-panel {
         background-color: #e3f2fd;
@@ -976,6 +1022,21 @@ body.dark-theme {
     color: #f0f0f0;
 }
 
+.dark-theme .context-menu {
+    background: #2b2b2b;
+    border-color: #555;
+}
+.dark-theme .context-menu-item {
+    color: #e0e0e0;
+}
+.dark-theme .context-menu-item:hover {
+    background: #3a3a3a;
+}
+.dark-theme .context-menu-item.delete:hover {
+    background: #7f1d1d;
+    color: #fff;
+}
+
 .dark-theme #robot-section, .dark-theme .tool-section {
     border-top-color: #444;
 }
@@ -999,21 +1060,6 @@ body.dark-theme {
     color: #fff;
 }
 
-.dark-theme .context-menu {
-    background: #2b2b2b;
-    border-color: #555;
-}
-.dark-theme .context-menu-item {
-    color: #e0e0e0;
-}
-.dark-theme .context-menu-item:hover {
-    background: #3a3a3a;
-}
-.dark-theme .context-menu-item.delete:hover {
-    background: #7f1d1d;
-    color: #fff;
-}
-
 .dark-theme #robot-ball-selector {
     background-color: #2b2b2b;
     border-color: #444;
@@ -1027,4 +1073,12 @@ body.dark-theme {
     background: #2b2b2b;
     border-color: #444;
     color: #e0e0e0;
+}
+
+.dark-theme .db-record-item {
+    border-bottom-color: #444;
+}
+
+.dark-theme .db-record-item:hover {
+    background-color: #3a3a3a;
 }

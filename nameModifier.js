@@ -7,6 +7,17 @@ let databaseContentCache = null; // Cache the DB content to avoid re-parsing unn
 
 // --- Helper Functions ---
 
+// Helper to check password for sensitive actions
+function checkPassword() {
+    const pass = prompt("Para esta ação, por favor, digite a senha:");
+    if (pass === '019026') {
+        return true;
+    } else if (pass !== null) { // User didn't click cancel
+        alert("Senha incorreta.");
+    }
+    return false;
+}
+
 // Helper to update the stats panel UI
 function updateStatsPanel() {
     const validCountEl = document.getElementById('valid-names-count');
@@ -231,7 +242,34 @@ function loadData() {
     if (displayArea) {
         try {
             const savedData = localStorage.getItem(DB_STORAGE_KEY);
-            displayArea.textContent = savedData || 'Nenhum dado salvo ainda.';
+            displayArea.innerHTML = ''; // Clear previous content
+
+            if (!savedData || savedData.trim() === '') {
+                 displayArea.textContent = 'Nenhum dado salvo ainda.';
+            } else {
+                const records = savedData.split('\n\n-> ');
+                records.forEach((recordText, index) => {
+                    if (recordText.trim() === '') return;
+
+                    const recordItem = document.createElement('div');
+                    recordItem.className = 'db-record-item';
+
+                    const textElement = document.createElement('pre');
+                    textElement.className = 'db-record-text';
+                    textElement.textContent = recordText;
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'db-record-delete-btn';
+                    deleteBtn.innerHTML = '&times;'; // A red 'X'
+                    deleteBtn.title = 'Excluir este registro';
+                    deleteBtn.onclick = () => deleteRecord(index);
+
+                    recordItem.appendChild(textElement);
+                    recordItem.appendChild(deleteBtn);
+                    displayArea.appendChild(recordItem);
+                });
+            }
+
             // Prepare records which will also update the stats panel.
             // Using false to avoid re-parsing if data hasn't changed.
             prepareEligibleRecords(false);
@@ -253,6 +291,34 @@ function clearData() {
             console.error("Erro ao limpar localStorage:", e);
             alert('Erro ao limpar os dados.');
         }
+    }
+}
+
+// Function to delete a single record by its index
+function deleteRecord(indexToDelete) {
+    if (!checkPassword()) {
+        return;
+    }
+
+    try {
+        const savedData = localStorage.getItem(DB_STORAGE_KEY) || '';
+        const records = savedData.split('\n\n-> ');
+
+        // Remove the record at the specified index
+        records.splice(indexToDelete, 1);
+
+        // Join the remaining records back together
+        const newData = records.join('\n\n-> ');
+
+        localStorage.setItem(DB_STORAGE_KEY, newData);
+
+        loadData(); // Refresh the display
+        prepareEligibleRecords(true); // Force re-parsing and update stats
+        alert('Registro excluído com sucesso!');
+
+    } catch (e) {
+        console.error("Erro ao excluir o registro:", e);
+        alert('Ocorreu um erro ao tentar excluir o registro.');
     }
 }
 
