@@ -90,8 +90,8 @@ export { addresses };
 
 // Mapping for emoji balls - DEPRECATED in favor of ballMeta
 const emojiMap = {
-    'e1': '🏠', // casa
-    'e2': '🌻', // girassol
+    'casa': '🏠', // casa
+    'aquarela': '🌻', // girassol
     'e3': '👵', // vó
     'e4': '🏫'  // escola
 };
