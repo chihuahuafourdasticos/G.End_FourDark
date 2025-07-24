@@ -9,12 +9,12 @@ const defaultAddresses = {
     6: `Bertioga\n Endereço 6\n Cep: 11262135\n Cidade: Bertioga\n Estado: São Paulo\n Bairro: Riviera de São Lourenço Módulo 7\n Endereço: Alameda do Monjoleiro\n Numero: 32\n Complemento: Edifício Ipanema Apartamento 52, ENTREGA DO RONY\n Id: Ipanema52`,
     7: `Bertioga\n Endereço 7\n Cep: 11262123\n Cidade: Bertioga\n Estado: São Paulo\n Bairro: Riviera de São Lourenço Módulo 6\n Endereço: Passeio do Jatobá\n Numero: 10\n Complemento: Edifício Porto Belo Apartamento 63, ENTREGA DA IVADI\n Id: Portobelo53`,
     8: `Guarulhos\n Endereço 8\n Cep: 07063010\n Cidade: Guarulhos\n Estado: São Paulo\n Bairro: Torres de bagi\n Endereço: avenida Júlio Prestes\n Numero: 901\n Complemento: casa 4, entregar para M`,
-    9: `Amparo\n Endereço 9\n Endereço: Rua Barao Cintra\n Bairro: SantoAntonio, Sjudas, SanJudas, Sanantoniw\n cep: 13901280\n Numero: 336\n Complemento: Condominio Loureiro Colocar casas acima do número 100, exemplos IOOOA, 657B, 876J, 598C, etc)`,
-    10: `Amparo\n Endereço 10\n cep: 13900470\n Bairro: Centro\n Endereço: Rua Comendador Guimaraes\n Numero: 456\n Complemento: Apto 32 Ed Brasilial`,
-    11: `Amparo\n Endereço 11\n cep: 13900370\n Bairro: Centro\n Endereço: Rua Angelo Lavezzo\n Numero: 111\n Complemento: Apto 103`,
-    12: `Amparo\n Endereço 12\n cep: 13901280\n Bairro: SantoAntonio, Sjudas, SanJudas, Sanantoniw\n Endereço: Rua Barao Cintra\n Numero: 261\n Complemento: Entregar VICENTE`,
-    13: `Amparo\n Endereço 13\n cep: 13900400\n Bairro: Centro\n Endereço: Avenida Bernardino de Campos\n Numero: 48\n Complemento: Loja Limaozinho, Loja Baby, Loja Bebe`,
-    14: `Amparo\n Endereço 14\n cep: 13900400\n Bairro: Centro\n Endereço: Avenida Bernardino de Campos\n Numero: 173\n Complemento: Jose Nilton Clinica, Clinica Gastro, Sonia Maria Rosa Clinica, Clinica dos Rosa, Encomenda do Vicente, Entrega do Vicente`,
+    9: `Amparo\n Endereço 9\n Cep: 13901280\n Bairro: SantoAntonio, Sjudas, SanJudas, Sanantoniw\n Endereço: Rua Barao Cintra\n Numero: 336\n Complemento: Condominio Loureiro Colocar casas acima do número 100, exemplos IOOOA, 657B, 876J, 598C, etc)`,
+    10: `Amparo\n Endereço 10\n Cep: 13900470\n Bairro: Centro\n Endereço: Rua Comendador Guimaraes\n Numero: 456\n Complemento: Apto 32 Ed Brasilial`,
+    11: `Amparo\n Endereço 11\n Cep: 13900370\n Bairro: Centro\n Endereço: Rua Angelo Lavezzo\n Numero: 111\n Complemento: Apto 103`,
+    12: `Amparo\n Endereço 12\n Cep: 13901280\n Bairro: SantoAntonio, Sjudas, SanJudas, Sanantoniw\n Endereço: Rua Barao Cintra\n Numero: 261\n Complemento: Entregar VICENTE`,
+    13: `Amparo\n Endereço 13\n Cep: 13900400\n Bairro: Centro\n Endereço: Avenida Bernardino de Campos\n Numero: 48\n Complemento: Loja Limaozinho, Loja Baby, Loja Bebe`,
+    14: `Amparo\n Endereço 14\n Cep: 13900400\n Bairro: Centro\n Endereço: Avenida Bernardino de Campos\n Numero: 173\n Complemento: Jose Nilton Clinica, Clinica Gastro, Sonia Maria Rosa Clinica, Clinica dos Rosa, Encomenda do Vicente, Entrega do Vicente`,
     15: `Itapeva MG\n Endereço 15\n Cep: 37655000\n Bairro: Centro\n Endereço: Praça Joaquim Luiz\n Numero: 36\n Complemento: ENTREGAR LUIS, OTICAS BELLA`,
     16: `Itatiba\n Endereço 16\n Cep: 13256490\n Cidade: Itatiba\n Estado: SP\n Bairro: Vila Brasileira\n Endereço: Rua dos Operarios\n Numero: 110\n Complemento: Terça e quinta não entrar antes das 13 , Entregar Marcio`,
     17: `Santa Bárbara d'Oeste\n Endereço 17\n Cep: 13456132\n Cidade: Santa Bárbara d'Oeste\n Estado: SP\n Bairro: Distrito Industrial I\n Endereço: Rua Frederico Amadeo Covolan\n Numero: 270\n Complemento: Entregar Anselmo`,
@@ -24,6 +24,7 @@ const defaultAddresses = {
     'e3': `Seropedica - Vó\n Endereço 3\n Cep: 23895330\n Cidade: Seropedica\n Estado: rj\n Bairro: Fazenda Caxias\n Endereço: Rua Isidro Borges\n Numero: 123\n Complemento: Ao Lado da Igreja Congregacional xxxxxxxxxxxxx`,
     'e4': `Seropedica - Escola\n Endereço 4\n Cep: 23895075\n Cidade: Seropedica\n Estado: rj\n Bairro: Fazenda Caxias\n Endereço: Rua Josino Fernades Nunes\n Numero: 447\n Complemento: Creche Escola Aquarela`
 };
+
 const defaultLockedBalls = ['4', '18'];
 const defaultBallMeta = {
     'e1': { display: '🏠', title: 'Endereço Casa' },
@@ -44,6 +45,7 @@ let addresses = {};
 let lockedBalls = [];
 let ballMeta = {};
 let addressGeneratorTitle = 'Gerador_CH_3.0'; // Default title
+let addressOrder = []; // New: To store custom sort order
 
 // Load state from localStorage or use defaults
 function loadState() {
@@ -52,11 +54,13 @@ function loadState() {
         const storedLocked = localStorage.getItem('addressGenerator_lockedBalls');
         const storedMeta = localStorage.getItem('addressGenerator_ballMeta');
         const storedTitle = localStorage.getItem('addressGenerator_title');
+        const storedOrder = localStorage.getItem('addressGenerator_order');
 
         addresses = storedAddresses ? JSON.parse(storedAddresses) : { ...defaultAddresses };
         lockedBalls = storedLocked ? JSON.parse(storedLocked) : [...defaultLockedBalls];
         ballMeta = storedMeta ? JSON.parse(storedMeta) : { ...defaultBallMeta };
         addressGeneratorTitle = storedTitle || 'Gerador_CH_3.0';
+        addressOrder = storedOrder ? JSON.parse(storedOrder) : [];
 
         // Update title element on load
         const titleEl = document.getElementById('address-generator-title');
@@ -79,6 +83,7 @@ function saveState() {
         localStorage.setItem('addressGenerator_lockedBalls', JSON.stringify(lockedBalls));
         localStorage.setItem('addressGenerator_ballMeta', JSON.stringify(ballMeta));
         localStorage.setItem('addressGenerator_title', addressGeneratorTitle);
+        localStorage.setItem('addressGenerator_order', JSON.stringify(addressOrder));
     } catch (e) {
         console.error("Failed to save state to localStorage.", e);
         alert("Erro ao salvar as alterações. O armazenamento pode estar cheio.");
@@ -224,10 +229,15 @@ export function copyVariation(buttonElement, prefix, variation) {
   }
 }
 
+// --- Reorder State ---
+let sortableInstance = null;
+
 function createBalls() {
-    const ballContainer = document.querySelector('#address-generator .ball-container');
-    if (!ballContainer) return; // Exit if container not found
-    ballContainer.innerHTML = ''; // Clear existing balls if any
+    const ballContentContainer = document.querySelector('#balls-content-container');
+
+    if (!ballContentContainer) return;
+
+    ballContentContainer.innerHTML = ''; // Clear everything, including the old add ball if it was inside
 
     // --- Context Menu Handling ---
     const hideContextMenu = () => {
@@ -246,7 +256,13 @@ function createBalls() {
         menu.style.left = `${e.pageX}px`;
         menu.style.top = `${e.pageY}px`;
 
-        menu.innerHTML += `<div class="context-menu-item" onclick="addressGenerator.handleBallAction('edit', '${key}')">Editar</div>`;
+        menu.innerHTML += `<div class="context-menu-item" onclick="addressGenerator.handleBallAction('edit', '${key}')">Editar Endereço</div>`;
+        menu.innerHTML += `<div class="context-menu-item" onclick="addressGenerator.handleBallAction('reorder', '${key}')">Arrastar</div>`;
+
+        // Add "Edit Icon" option only for black balls (non-numeric keys)
+        if (!/^\d+$/.test(key)) {
+             menu.innerHTML += `<div class="context-menu-item" onclick="addressGenerator.handleBallAction('editIcon', '${key}')">Alterar Ícone</div>`;
+        }
 
         if (isLocked) {
             menu.innerHTML += `<div class="context-menu-item" onclick="addressGenerator.handleBallAction('unlock', '${key}')">Desbloquear</div>`;
@@ -262,18 +278,39 @@ function createBalls() {
     };
     // --- End Context Menu Handling ---
 
-    const sortedKeys = Object.keys(addresses).sort((a, b) => {
-        const aIsNum = /^\d+$/.test(a);
-        const bIsNum = /^\d+$/.test(b);
-        if (aIsNum && bIsNum) return Number(a) - Number(b); // Sort numbers numerically
-        if (aIsNum) return -1; // Numbers first
-        if (bIsNum) return 1;
-        return a.localeCompare(b); // Sort others alphabetically
-    });
+    const getSortedKeys = () => {
+        const currentKeys = Object.keys(addresses);
+        // Filter out keys from order array that no longer exist in addresses
+        const validOrder = addressOrder.filter(key => currentKeys.includes(key));
+        const orderedKeys = new Set(validOrder);
+        const remainingKeys = currentKeys.filter(key => !orderedKeys.has(key));
+        
+        // Default sort for remaining keys
+        remainingKeys.sort((a, b) => {
+            const aIsNum = /^\d+$/.test(a);
+            const bIsNum = /^\d+$/.test(b);
+            if (aIsNum && bIsNum) return Number(a) - Number(b);
+            if (aIsNum) return -1;
+            if (bIsNum) return 1;
+            return a.localeCompare(b);
+        });
+
+        // Combine valid custom order with newly added/remaining keys
+        const finalKeyOrder = [...validOrder, ...remainingKeys];
+        // If the order has changed (e.g., due to filtering), update it
+        if (JSON.stringify(finalKeyOrder) !== JSON.stringify(addressOrder)) {
+            addressOrder = finalKeyOrder;
+            // No need to save state here, it will be saved on user actions.
+        }
+        return finalKeyOrder;
+    };
+
+    const sortedKeys = getSortedKeys();
 
     sortedKeys.forEach(key => {
         const ball = document.createElement('div');
         ball.classList.add('ball');
+        ball.dataset.key = key; // Add key for reordering
         const isLocked = lockedBalls.includes(key);
 
         if (isLocked) {
@@ -294,32 +331,31 @@ function createBalls() {
 
         // Add right-click listener
         ball.addEventListener('contextmenu', (e) => showContextMenu(e, key, isLocked));
-
-        ballContainer.appendChild(ball);
+        
+        // Append to the single container
+        ballContentContainer.appendChild(ball);
     });
 
-    // --- Add the Green "Add" Ball ---
+    // --- Add the Green "Add" Ball at the end of the content container ---
     const addBall = document.createElement('div');
     addBall.classList.add('ball', 'add-ball');
     addBall.textContent = '+';
     addBall.title = 'Adicionar novo endereço';
     addBall.addEventListener('click', handleAddNewBall);
-    ballContainer.appendChild(addBall);
+    ballContentContainer.appendChild(addBall);
 }
 
 function updateRobotSequence() {
-    const allKeys = Object.keys(addresses);
+    const allKeys = addressOrder.length > 0 ? addressOrder : Object.keys(addresses);
 
     if (robotViewMode === 'blue') {
         robotSequence = allKeys
-            .filter(key => /^\d+$/.test(key) && !lockedBalls.includes(key))
-            .map(Number)
-            .sort((a, b) => a - b)
-            .map(String);
+            .filter(key => /^\d+$/.test(key) && !lockedBalls.includes(key));
+            // Keep custom order, don't re-sort numerically here
     } else { // 'black' mode
         robotSequence = allKeys
-            .filter(key => !/^\d+$/.test(key) && !lockedBalls.includes(key))
-            .sort((a, b) => a.localeCompare(b)); // Sort black balls alphabetically by key
+            .filter(key => !/^\d+$/.test(key) && !lockedBalls.includes(key));
+            // Keep custom order, don't re-sort alphabetically here
     }
 
     currentRobotIndex = 0; // Reset index whenever the sequence/view changes
@@ -457,11 +493,12 @@ function checkPassword() {
 }
 
 export function handleBallAction(action, key) {
-    if (!checkPassword()) return;
-
+    // Password check is now inside each case that needs it
     switch (action) {
         case 'edit':
-            { // Use block scope to keep variables local
+            {
+                if (!checkPassword()) return;
+                window.saveHistoryState();
                 const currentAddress = addresses[key];
                 const newAddress = prompt(`Editando endereço para a bolinha "${key}":`, currentAddress);
 
@@ -477,22 +514,54 @@ export function handleBallAction(action, key) {
 
                 addresses[key] = newAddress;
                 alert(`Bolinha "${key}" atualizada com sucesso!`);
-                // No re-render needed, but we must save state.
+                saveState();
+            }
+            break;
+        case 'reorder':
+            {
+                if (!checkPassword()) return;
+                startReorderMode(key);
+            }
+            break;
+        case 'editIcon':
+            {
+                if (!checkPassword()) return;
+                // This case is only for black balls, so ballMeta[key] should exist
+                if (ballMeta[key]) {
+                    showEmojiPicker().then(emoji => {
+                        if (emoji) {
+                            window.saveHistoryState();
+                            ballMeta[key].display = emoji;
+                            ballMeta[key].title = `Endereço ${emoji}`;
+                            saveState();
+                            createBalls(); // Re-render to show new icon
+                            updateRobotSequence(); // Update robot panel as well
+                            alert('Ícone atualizado com sucesso!');
+                        }
+                    });
+                }
             }
             break;
         case 'lock':
+            if (!checkPassword()) return;
+            window.saveHistoryState();
             if (!lockedBalls.includes(key)) {
                 lockedBalls.push(key);
             }
             break;
         case 'unlock':
+            if (!checkPassword()) return;
+            window.saveHistoryState();
             lockedBalls = lockedBalls.filter(k => k !== key);
             break;
         case 'delete':
+            if (!checkPassword()) return;
             if (confirm(`Tem certeza que deseja excluir permanentemente o endereço "${key}"?`)) {
+                window.saveHistoryState();
                 delete addresses[key];
                 if (ballMeta[key]) delete ballMeta[key];
                 lockedBalls = lockedBalls.filter(k => k !== key);
+                addressOrder = addressOrder.filter(k => k !== key); // Also remove from order
             } else {
                 return; // Do not save or refresh if user cancels
             }
@@ -500,13 +569,17 @@ export function handleBallAction(action, key) {
         default:
             return;
     }
-    saveState();
-    createBalls(); // Re-render balls with new state
-    updateRobotSequence();
+    if (action !== 'edit' && action !== 'reorder' && action !== 'editIcon') {
+        saveState();
+        createBalls(); // Re-render balls with new state
+        updateRobotSequence();
+    }
 }
 
 async function handleAddNewBall() {
     if (!checkPassword()) return;
+    
+    window.saveHistoryState();
 
     const color = prompt("Qual a cor da nova bolinha?\n(Digite 'azul' ou 'preta')")?.toLowerCase();
 
@@ -519,16 +592,16 @@ async function handleAddNewBall() {
             return;
         }
     } else if (color === 'preta') {
-        const display = prompt("Digite o ícone ou texto para a nova bolinha preta:");
+        const display = await showEmojiPicker(); // Use the new emoji picker
         if (!display) {
-            alert("O ícone/texto não pode ser vazio.");
+            alert("Nenhum emoji selecionado. A operação foi cancelada.");
             return;
         }
         // Generate a unique key for custom balls
         let i = 1;
-        while (addresses[`c${i}`]) { i++; }
+        while (addresses[`c${i}`] || ballMeta[`c${i}`]) { i++; }
         newKey = `c${i}`;
-        newBallMeta = { display, title: `Endereço Personalizado ${display}` };
+        newBallMeta = { display, title: `Endereço ${display}` };
 
     } else {
         alert("Cor inválida. A operação foi cancelada.");
@@ -542,6 +615,14 @@ async function handleAddNewBall() {
     }
 
     addresses[newKey] = addressText;
+    // Add the new key to the end of its color group in the order array
+    if (color === 'azul') {
+        const lastBlueIndex = addressOrder.map(k => /^\d+$/.test(k)).lastIndexOf(true);
+        addressOrder.splice(lastBlueIndex + 1, 0, newKey);
+    } else { // black
+        addressOrder.push(newKey); // Black balls are always after blue
+    }
+
     if (Object.keys(newBallMeta).length > 0) {
         ballMeta[newKey] = newBallMeta;
     }
@@ -552,7 +633,76 @@ async function handleAddNewBall() {
     updateRobotSequence();
 }
 
+// --- Reordering Logic ---
+function startReorderMode(key) {
+    const container = document.querySelector('#balls-content-container');
+    if (!container || sortableInstance) return;
+
+    // Add a class to the relevant balls to make them pulse
+    const isBlueGroup = /^\d+$/.test(key);
+    container.querySelectorAll('.ball[data-key]').forEach(ballEl => {
+        const ballKey = ballEl.dataset.key;
+        const isBallBlue = /^\d+$/.test(ballKey);
+
+        if (isBlueGroup === isBallBlue) {
+            ballEl.classList.add('reorder-active');
+        }
+    });
+
+    // Show finish button
+    document.getElementById('reorder-controls').style.display = 'block';
+
+    sortableInstance = new Sortable(container, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        dragClass: 'sortable-drag',
+        onEnd: () => {
+            // We will handle saving the order when the "Finish" button is clicked.
+        }
+    });
+}
+
+function finishReorderMode() {
+    if (!sortableInstance) return;
+
+    window.saveHistoryState();
+
+    const container = document.querySelector('#balls-content-container');
+
+    // Get the new visual order from the DOM
+    const newOrder = Array.from(container.querySelectorAll('.ball[data-key]')).map(b => b.dataset.key);
+
+    // Enforce the "blue first, then black" rule by re-sorting the new order
+    newOrder.sort((a, b) => {
+        const aIsBlue = /^\d+$/.test(a);
+        const bIsBlue = /^\d+$/.test(b);
+        if (aIsBlue && !bIsBlue) return -1; // a (blue) comes before b (black)
+        if (!aIsBlue && bIsBlue) return 1;  // b (blue) comes before a (black)
+        return 0; // Keep original relative order for same-color balls
+    });
+
+    addressOrder = newOrder;
+
+    saveState();
+
+    sortableInstance.destroy();
+    sortableInstance = null;
+
+    // Remove classes and hide button
+    document.getElementById('reorder-controls').style.display = 'none';
+    container.querySelectorAll('.ball.reorder-active').forEach(ballEl => {
+        ballEl.classList.remove('reorder-active');
+    });
+
+    // Re-render everything to reflect the enforced sort order and remove SortableJS artifacts
+    createBalls();
+    updateRobotSequence();
+}
+
 export function populateAndGenerate(ballNumber) {
+    // Do nothing if reorder is active
+    if(sortableInstance) return;
+    
     const addressText = addresses[ballNumber];
     if (addressText) {
         document.getElementById('originalText').value = addressText;
@@ -562,13 +712,67 @@ export function populateAndGenerate(ballNumber) {
     }
 }
 
+// --- Emoji Picker Function ---
+function showEmojiPicker() {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('emoji-picker-modal');
+        const picker = modal.querySelector('emoji-picker');
+        const closeBtn = modal.querySelector('.emoji-close');
+        
+        if (!modal || !picker || !closeBtn) {
+            console.error('Emoji picker modal elements not found!');
+            resolve(null);
+            return;
+        }
+
+        // Apply theme to picker
+        if (document.body.classList.contains('dark-theme')) {
+            picker.classList.add('dark');
+        } else {
+            picker.classList.remove('dark');
+        }
+
+        // Function to close and clean up all listeners
+        const closeModal = (resolvedValue = null) => {
+            modal.style.display = 'none';
+            picker.removeEventListener('emoji-click', handleEmojiClick);
+            closeBtn.removeEventListener('click', handleCloseClick);
+            window.removeEventListener('click', handleOutsideClick);
+            resolve(resolvedValue);
+        };
+
+        const handleEmojiClick = (event) => {
+            closeModal(event.detail.unicode);
+        };
+
+        const handleCloseClick = () => {
+            closeModal(null);
+        };
+
+        const handleOutsideClick = (event) => {
+            if (event.target === modal) {
+                closeModal(null);
+            }
+        };
+
+        // Attach fresh listeners
+        picker.addEventListener('emoji-click', handleEmojiClick, { once: true });
+        closeBtn.addEventListener('click', handleCloseClick, { once: true });
+        window.addEventListener('click', handleOutsideClick);
+
+        modal.style.display = 'flex';
+    });
+}
+
 // --- Robot Sequencer Functions ---
 
 function updateRobotDisplay() {
     const ballDisplay = document.getElementById('robot-ball-display');
     if (robotSequence.length > 0) {
         const currentBallKey = robotSequence[currentRobotIndex];
-        ballDisplay.textContent = currentBallKey;
+        const displayContent = ballMeta[currentBallKey]?.display || currentBallKey;
+        ballDisplay.textContent = displayContent;
+        ballDisplay.title = ballMeta[currentBallKey]?.title || `Clique para copiar dados da bolinha ${currentBallKey}`;
 
         // Update the highlight in the selector panel
         const selectorBalls = document.querySelectorAll('#robot-ball-selector .selector-ball');
@@ -626,6 +830,7 @@ export function initAddressGenerator() {
         titleElement.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             if (checkPassword()) {
+                window.saveHistoryState();
                 const newTitle = prompt('Digite o novo título:', addressGeneratorTitle);
                 if (newTitle && newTitle.trim() !== '') {
                     addressGeneratorTitle = newTitle.trim();
@@ -709,6 +914,12 @@ export function initAddressGenerator() {
 
     // Populate the new selector panel and set initial state
     updateRobotSequence();
+
+    // Attach listener for finish reorder button
+    const finishBtn = document.getElementById('finish-reorder-btn');
+    if (finishBtn) {
+        finishBtn.addEventListener('click', finishReorderMode);
+    }
 
     // Attach click listener to the main robot ball display
     const robotBallDisplay = document.getElementById('robot-ball-display');

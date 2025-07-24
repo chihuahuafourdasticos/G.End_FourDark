@@ -21,6 +21,31 @@ body {
     gap: 15px; /* Spacing between nav and backup buttons */
 }
 
+/* New History Controls styles */
+#history-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#history-controls button {
+    background-color: #607D8B; /* Same as other controls */
+    font-size: 1.2em; /* Larger symbols */
+    font-weight: bold;
+    padding: 5px 15px;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+}
+
+#history-controls button:disabled {
+    background-color: #B0BEC5;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#history-controls button:not(:disabled):hover {
+    background-color: #455A64;
+}
+
 /* New Theme Toggle Style */
 #theme-toggle {
     width: 56px;
@@ -126,6 +151,23 @@ body {
   position: relative;
   animation: fadeIn 0.3s;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* New Emoji Picker Modal Specific Styles */
+.emoji-modal-content {
+    padding: 20px;
+    width: auto; /* Let it size to the picker */
+    max-width: 400px;
+}
+
+.emoji-modal-content .modal-body {
+    padding: 0;
+    max-height: none;
+}
+
+emoji-picker {
+    width: 100%;
+    height: 450px;
 }
 
 /* Batch Generator Modal Specific Styles */
@@ -382,6 +424,14 @@ body {
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-bottom: 20px;
+      gap: 5px; /* Add gap between the two containers */
+    }
+
+    .ball-group-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 10px; /* Spacing between balls in a group */
     }
 
     #address-generator .ball {
@@ -393,10 +443,41 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 5px;
+      margin: 0; /* Remove margin as gap is now on container */
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
       font-size: 0.9em; /* Adjust ball font size */
+      user-select: none; /* Prevent text selection during drag */
+    }
+
+    #address-generator .ball.reorder-active {
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+        box-shadow: none;
+      }
+      50% {
+        opacity: 0.7;
+        box-shadow: 0 0 8px 3px gold;
+      }
+      100% {
+        opacity: 1;
+        box-shadow: none;
+      }
+    }
+    
+    /* SortableJS helper classes */
+    .ball.sortable-ghost {
+      opacity: 0.4;
+      background-color: #2196F3;
+    }
+    .ball.sortable-drag {
+      cursor: grabbing;
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     #address-generator .ball:hover {
@@ -482,9 +563,6 @@ body {
 
     .context-menu-item.delete {
         color: #D32F2F;
-    }
-    .context-menu-item.delete:hover {
-        background: #fde2e2;
     }
 
     /* Robot Sequencer Styles */
@@ -642,6 +720,9 @@ body {
       height: 40px;
       font-size: 1.1em;
       background-color: #0d47a1; /* Darker blue */
+      /* Also make it an emoji ball */
+       color: white; /* Emoji color (may not affect all emojis) */
+       line-height: 1; /* Ensure emoji centers vertically */
     }
 
     #robot-ball-display:hover {
@@ -928,39 +1009,20 @@ body {
         font-size: 1.1em;
      }
 
-    /* Complement Modifier Specific Styles */
-    #complemento-modifier {
-        /* Uses .tool-section */
+    /* New Reorder Controls */
+    #reorder-controls {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #finish-reorder-btn {
+        background-color: #4CAF50;
+        padding: 10px 25px;
+        font-size: 1.1em;
+    }
+     #finish-reorder-btn:hover {
+        background-color: #3e8e41;
     }
 
-    #complemento-modifier .complemento-controls {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
-        flex-wrap: wrap; /* Allow controls to wrap */
-         justify-content: center;
-    }
-
-    #complemento-modifier label {
-        font-size: 0.9em;
-    }
-
-     #complemento-modifier input[type="number"] {
-        width: 70px; /* Smaller width for count */
-        padding: 8px;
-        font-size: 1em;
-        margin: 0; /* Reset margin */
-     }
-
-    #complemento-modifier #gerarComplementoBtn {
-        background-color: #00BCD4; /* Cyan */
-        padding: 8px 15px;
-    }
-
-    #complemento-modifier #gerarComplementoBtn:hover {
-        background-color: #0097A7;
-    }
 
 /* --- DARK THEME --- */
 body.dark-theme {
@@ -1051,6 +1113,10 @@ body.dark-theme {
     background-color: #252525;
     color: #e0e0e0;
     border: 1px solid #444;
+}
+
+.dark-theme .emoji-modal-content {
+    background-color: #1e1e1e; /* Match tool container background */
 }
 
 .dark-theme .close-button {

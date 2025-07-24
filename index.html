@@ -28,6 +28,11 @@
             <button id="import-backup-btn">Importar Backup</button>
             <input type="file" id="backup-file-input" style="display: none;" accept=".json,application/json">
         </div>
+        <!-- New History Controls -->
+        <div id="history-controls">
+            <button id="undo-btn" title="Desfazer (Voltar)">↶</button>
+            <button id="redo-btn" title="Refazer (Avançar)">↷</button>
+        </div>
     </div>
     <div id="ip-widget">
         <div id="help-button" title="Ajuda">?</div>
@@ -41,6 +46,11 @@
 
     <div class="ball-container">
       <!-- Balls will be dynamically added here -->
+      <div id="balls-content-container" class="ball-group-container"></div>
+    </div>
+     <!-- New Reorder Controls -->
+    <div id="reorder-controls" style="display: none;">
+        <button id="finish-reorder-btn">✓ Concluir Reordenação</button>
     </div>
 
     <div class="input-section">
@@ -130,6 +140,17 @@
         </div>
      </div>
      <!-- End New Complement Modifier Section -->
+  </div>
+
+  <!-- New Emoji Picker Modal -->
+  <div id="emoji-picker-modal" class="modal" style="display: none;">
+    <div class="modal-content emoji-modal-content">
+      <span class="close-button emoji-close">&times;</span>
+      <h2>Selecione um Emoji</h2>
+      <div class="modal-body">
+        <emoji-picker class="dark"></emoji-picker>
+      </div>
+    </div>
   </div>
 
   <!-- New Batch Generator Modal -->
@@ -245,6 +266,8 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
   <script type="module">
     import * as navigation from './navigation.js';
     import * as addressGenerator from './addressGenerator.js';
@@ -340,17 +363,91 @@
           }
       });
 
-      // --- Backup & Restore Logic ---
-      const createBackupBtn = document.getElementById('create-backup-btn');
-      const importBackupBtn = document.getElementById('import-backup-btn');
-      const backupFileInput = document.getElementById('backup-file-input');
+      // --- History (Undo/Redo) Logic ---
+      const historyStack = [];
+      const redoStack = [];
+      const MAX_HISTORY = 30;
+      const undoBtn = document.getElementById('undo-btn');
+      const redoBtn = document.getElementById('redo-btn');
 
       const backupKeys = [
         'addressGenerator_addresses',
         'addressGenerator_lockedBalls',
         'addressGenerator_ballMeta',
+        'addressGenerator_title',
+        'addressGenerator_order', // Add new order key
         'nameModifierDatabase'
       ];
+
+      // Centralized state snapshot function
+      const getAppState = () => {
+          const state = {};
+          backupKeys.forEach(key => {
+              state[key] = localStorage.getItem(key); // Store raw string or null
+          });
+          return state;
+      };
+
+      // Centralized state restoration function
+      const restoreAppState = (state) => {
+          Object.keys(state).forEach(key => {
+              if (state[key] !== null && state[key] !== undefined) {
+                  localStorage.setItem(key, state[key]);
+              } else {
+                  // If key is null/undefined in the state object, remove it
+                  localStorage.removeItem(key);
+              }
+          });
+          location.reload();
+      };
+      
+      // Function to be called BEFORE a state change
+      window.saveHistoryState = () => {
+          if (historyStack.length >= MAX_HISTORY) {
+              historyStack.shift(); // Remove oldest entry
+          }
+          historyStack.push(getAppState());
+          redoStack.length = 0; // Clear redo stack on new action
+          updateHistoryButtons();
+      };
+      
+      const updateHistoryButtons = () => {
+          undoBtn.disabled = historyStack.length === 0;
+          redoBtn.disabled = redoStack.length === 0;
+      };
+      
+      function checkPassword() {
+          const pass = prompt("Para esta ação, por favor, digite a senha:");
+          if (pass === '019026') return true;
+          if (pass !== null) alert("Senha incorreta.");
+          return false;
+      }
+
+      undoBtn.addEventListener('click', () => {
+          if (historyStack.length > 0) {
+              if (checkPassword()) {
+                  redoStack.push(getAppState()); // Save current state for redo
+                  const prevState = historyStack.pop();
+                  restoreAppState(prevState);
+              }
+          }
+      });
+      
+      redoBtn.addEventListener('click', () => {
+          if (redoStack.length > 0) {
+              if (checkPassword()) {
+                  historyStack.push(getAppState()); // Save current state for undo
+                  const nextState = redoStack.pop();
+                  restoreAppState(nextState);
+              }
+          }
+      });
+      // --- End History Logic ---
+
+      // --- Backup & Restore Logic ---
+      const createBackupBtn = document.getElementById('create-backup-btn');
+      const importBackupBtn = document.getElementById('import-backup-btn');
+      const backupFileInput = document.getElementById('backup-file-input');
 
       createBackupBtn.addEventListener('click', () => {
         const backupData = {};
@@ -392,6 +489,8 @@
             backupFileInput.value = '';
             return;
         }
+        
+        window.saveHistoryState(); // Save state before importing
 
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -436,6 +535,9 @@
 
         reader.readAsText(file);
       });
+      
+      // Initialize history buttons state on load
+      updateHistoryButtons();
 
     });
   </script>

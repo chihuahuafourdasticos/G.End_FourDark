@@ -215,6 +215,7 @@ function saveData() {
         const newData = dbInput.value; // Get the new data to add
         if (newData.trim()) { // Check if there is new data to save
             try {
+                window.saveHistoryState(); // Save state before changing
                 const existingData = localStorage.getItem(DB_STORAGE_KEY) || '';
                 
                 // If there's existing data, add a separator before appending the new data.
@@ -283,6 +284,7 @@ function loadData() {
 function clearData() {
     if (confirm('Tem certeza que deseja limpar todos os dados salvos?')) {
         try {
+            window.saveHistoryState(); // Save state before changing
             localStorage.removeItem(DB_STORAGE_KEY);
             loadData(); // Refresh display
             prepareEligibleRecords(true); // Force update after clear
@@ -299,6 +301,8 @@ function deleteRecord(indexToDelete) {
     if (!checkPassword()) {
         return;
     }
+    
+    window.saveHistoryState(); // Save state before changing
 
     try {
         const savedData = localStorage.getItem(DB_STORAGE_KEY) || '';
@@ -656,4 +660,180 @@ export function initNameModifier() {
       if (complementoCountInput) {
           complementoCountInput.addEventListener('keypress', handleComplementoEnter);
       }
+}
+
+// --- Ball Management Functions ---
+const addresses = {};
+const ballMeta = {};
+const lockedBalls = [];
+
+function saveState() {
+    localStorage.setItem('ballState', JSON.stringify({ addresses, ballMeta, lockedBalls }));
+}
+
+function createBalls() {
+    const ballContainer = document.getElementById('ball-container');
+    if (!ballContainer) return;
+
+    ballContainer.innerHTML = '';
+    Object.keys(addresses).forEach(key => {
+        const ball = document.createElement('div');
+        ball.className = 'ball';
+        ball.textContent = addresses[key];
+        ball.title = ballMeta[key]?.title || 'Endereço';
+        ball.onclick = () => handleBallAction(key);
+        ballContainer.appendChild(ball);
+    });
+}
+
+function updateRobotSequence() {
+    const robotSequence = document.getElementById('robot-sequence');
+    if (!robotSequence) return;
+
+    robotSequence.innerHTML = '';
+    Object.keys(ballMeta).forEach(key => {
+        const sequenceItem = document.createElement('div');
+        sequenceItem.className = 'sequence-item';
+        sequenceItem.textContent = key;
+        robotSequence.appendChild(sequenceItem);
+    });
+}
+
+function handleBallAction(key) {
+    const action = prompt("O que deseja fazer com a bolinha \"" + key + "\"?\n\nOpções:\n1. Editar\n2. Alterar ícone\n3. Bloquear\n4. Desbloquear\n5. Excluir permanentemente\n\nDigite o número da ação desejada:");
+    if (!action || isNaN(action)) {
+        return;
+    }
+
+    switch (action) {
+        case '1':
+            { // Use block scope to keep variables local
+                const currentAddress = addresses[key];
+                const newAddress = prompt(`Editando endereço para a bolinha "${key}":`, currentAddress);
+
+                if (newAddress === null) {
+                    // User cancelled, do nothing.
+                    return;
+                }
+
+                if (newAddress.trim() === '') {
+                    alert('O endereço não pode ser vazio. A edição foi cancelada.');
+                    return;
+                }
+
+                addresses[key] = newAddress;
+                alert(`Bolinha "${key}" atualizada com sucesso!`);
+                saveState();
+                // No re-render needed for address edit alone, as it doesn't change ball appearance.
+            }
+            break;
+        case '2':
+            {
+                // This case is only for black balls, so ballMeta[key] should exist
+                if (ballMeta[key]) {
+                    showEmojiPicker().then(emoji => {
+                        if (emoji) {
+                            ballMeta[key].display = emoji;
+                            // Also update the title to match the new emoji for consistency
+                            const titlePrompt = prompt("Digite um novo título (opcional):", ballMeta[key].title);
+                            if (titlePrompt !== null) { // User didn't cancel the title prompt
+                                ballMeta[key].title = titlePrompt || `Endereço ${emoji}`;
+                            }
+                            
+                            saveState();
+                            createBalls(); // Re-render to show new icon
+                            updateRobotSequence(); // Update robot panel as well
+                            alert('Ícone atualizado com sucesso!');
+                        }
+                    });
+                } else {
+                    alert("Metadados não encontrados para esta bolinha. Não é possível alterar o ícone.");
+                }
+            }
+            break;
+        case '3':
+            if (!lockedBalls.includes(key)) {
+                lockedBalls.push(key);
+            }
+            break;
+        case '4':
+            lockedBalls = lockedBalls.filter(k => k !== key);
+            break;
+        case '5':
+            if (confirm(`Tem certeza que deseja excluir permanentemente o endereço "${key}"?`)) {
+                delete addresses[key];
+                if (ballMeta[key]) delete ballMeta[key];
+                lockedBalls = lockedBalls.filter(k => k !== key);
+            } else {
+                return; // Do not save or refresh if user cancels
+            }
+            break;
+        default:
+            return;
+    }
+    saveState();
+    createBalls(); // Re-render balls with new state
+    updateRobotSequence();
+}
+
+async function handleAddNewBall() {
+    if (!checkPassword()) return;
+
+    const color = prompt("Qual a cor da nova bolinha?\n(Digite 'azul' ou 'preta')")?.toLowerCase();
+
+    let newKey, newBallMeta = {};
+
+    if (color === 'azul') {
+        newKey = prompt("Digite o número para a nova bolinha azul:");
+        if (!newKey || !/^\d+$/.test(newKey) || addresses[newKey]) {
+            alert("Número inválido ou já existente.");
+            return;
+        }
+    } else if (color === 'preta') {
+        const display = await showEmojiPicker(); // Use the new emoji picker
+        if (!display) {
+            // User cancelled the picker
+            return;
+        }
+        // Generate a unique key for custom balls
+        let i = 1;
+        while (addresses[`c${i}`] || ballMeta[`c${i}`]) { i++; }
+        newKey = `c${i}`;
+
+        const title = prompt(`Digite um título para a nova bolinha "${display}":`, `Endereço ${display}`);
+        if (title === null) { // User cancelled the title prompt
+            return;
+        }
+        
+        newBallMeta = { display, title: title || `Endereço ${display}` };
+
+    } else {
+        if (color !== null) { // Don't alert if user just cancelled
+             alert("Cor inválida. A operação foi cancelada.");
+        }
+        return;
+    }
+
+    const addressText = prompt(`Cole o texto completo do endereço para a nova bolinha "${newKey}":`);
+    if (addressText === null || addressText.trim() === '') {
+        alert("O texto do endereço não pode ser vazio. A operação foi cancelada.");
+        return;
+    }
+
+    addresses[newKey] = addressText;
+    if (Object.keys(newBallMeta).length > 0) {
+        ballMeta[newKey] = newBallMeta;
+    }
+
+    alert(`Bolinha "${newKey}" adicionada com sucesso!`);
+    saveState();
+    createBalls();
+    updateRobotSequence();
+}
+
+function showEmojiPicker() {
+    return new Promise(resolve => {
+        const emoji = prompt("Digite o emoji para o ícone da bolinha:");
+        resolve(emoji);
+    });
 }
