@@ -396,17 +396,22 @@ emoji-picker {
 
     #address-generator .variation {
       margin: 10px 0;
-      padding: 8px;
-      border-bottom: 1px solid #e6f3ff;
+      padding: 8px 5px;
+      border-bottom: 1px solid #e0e0e0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 0.95em;
       transition: border-color 0.3s;
-      border-radius: 4px; /* Added for better visual in dark mode */
+    }
+
+    #address-generator .variation span {
+       word-break: break-all; /* Break long variations */
+       padding-right: 10px; /* Space before button */
     }
 
     #address-generator .variation button {
-      background: #4CAF50;
+      background: #4CAF50; /* Green */
       color: white;
       padding: 5px 10px;
       border: none;
@@ -434,7 +439,7 @@ emoji-picker {
       gap: 10px; /* Spacing between balls in a group */
     }
 
-    #address-generator .ball {
+    .ball {
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -450,7 +455,7 @@ emoji-picker {
       user-select: none; /* Prevent text selection during drag */
     }
 
-    #address-generator .ball.reorder-active {
+    .ball.reorder-active {
         animation: pulse 2s ease-in-out infinite;
     }
 
@@ -480,12 +485,12 @@ emoji-picker {
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    #address-generator .ball:hover {
+    .ball:hover {
       background-color: #1976D2;
     }
 
     /* Styles for the locked ball */
-    #address-generator .ball.locked {
+    .ball.locked {
         background-color: #A0A0A0; /* Grey background for locked state */
         color: #505050; /* Darker text/icon color for contrast */
         cursor: not-allowed; /* Indicate it's not clickable */
@@ -493,37 +498,37 @@ emoji-picker {
         font-size: 1.1em; /* Make lock icon a bit more prominent if needed */
     }
 
-    #address-generator .ball.locked:hover {
+    .ball.locked:hover {
         background-color: #A0A0A0; /* No change on hover for locked ball */
         opacity: 0.7; /* Maintain opacity */
     }
 
     /* Styles for the new emoji balls */
-    #address-generator .emoji-ball {
+    .emoji-ball {
         background-color: #000000; /* Black background */
         color: white; /* Emoji color (may not affect all emojis) */
         font-size: 1.2em; /* Slightly larger emoji */
         line-height: 1; /* Ensure emoji centers vertically */
     }
 
-    #address-generator .emoji-ball:hover {
+    .emoji-ball:hover {
        background-color: #333333; /* Darker grey on hover */
        opacity: 0.9;
     }
 
     /* Styles for the new red clipboard balls */
-    #address-generator .red-ball {
+    .red-ball {
         background-color: #F44336; /* Vibrant Red */
         color: white;
         /* Inherits font-size from .ball (0.9em) which should be fine for 'R1', 'R2' */
     }
 
-    #address-generator .red-ball:hover {
+    .red-ball:hover {
         background-color: #D32F2F; /* Darker Red on hover */
     }
 
     /* New style for the green 'add' ball */
-    #address-generator .add-ball {
+    .add-ball {
         background-color: #4CAF50; /* Green */
         color: white;
         font-size: 1.8em;
@@ -531,7 +536,7 @@ emoji-picker {
         line-height: 1;
     }
 
-    #address-generator .add-ball:hover {
+    .add-ball:hover {
         background-color: #3e8e41;
         transform: scale(1.1);
     }
@@ -800,6 +805,46 @@ emoji-picker {
         background-color: #0097A7;
     }
 
+    .emoji-copy-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 1.5em; /* Make the emoji bigger */
+        cursor: pointer;
+        line-height: 1;
+        transition: transform 0.2s;
+    }
+
+    .emoji-copy-btn:hover {
+        transform: scale(1.1);
+        background: none; /* Ensure no background on hover */
+    }
+
+    /* New style for Plano-B add button */
+    .plano-b-add-item-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Styles for Plano-B buttons */
+    #plano-b-controls {
+        display: flex;
+        gap: 10px; /* Add space between buttons */
+        margin-bottom: 20px; /* Add space below the button container */
+        justify-content: center; /* Center the buttons */
+    }
+    #plano-b-controls button {
+        background-color: #9C27B0; /* Purple */
+        transition: background-color 0.2s;
+    }
+     #plano-b-controls button:hover {
+        background-color: #7B1FA2; /* Darker Purple */
+    }
+
+    #plano-b-controls button.active {
+        background: #6a0080; /* Even darker purple for active state */
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
 
     #name-modifier #resultado {
       font-size: 20px;
@@ -1139,10 +1184,6 @@ body.dark-theme {
     background: #2b2b2b;
     border-color: #444;
     color: #e0e0e0;
-}
-
-.dark-theme .db-record-item {
-    border-bottom-color: #444;
 }
 
 .dark-theme .db-record-item:hover {

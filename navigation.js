@@ -3,10 +3,12 @@ export function showTool(toolId) {
   // Hide all tool containers
   document.getElementById('address-generator').style.display = 'none';
   document.getElementById('name-modifier').style.display = 'none';
+  document.getElementById('plano-b').style.display = 'none';
 
   // Deactivate all nav buttons
   document.getElementById('nav-address').classList.remove('active');
   document.getElementById('nav-name').classList.remove('active');
+  document.getElementById('nav-plano').classList.remove('active');
 
   // Show the selected tool container
   const toolElement = document.getElementById(toolId);

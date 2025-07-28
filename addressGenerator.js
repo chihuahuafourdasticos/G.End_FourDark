@@ -112,7 +112,7 @@ function generateRandomPunctuation() {
   return puncts[Math.floor(Math.random() * puncts.length)];
 }
 
-function modifyWord(word) {
+export function modifyWord(word) {
   let result = '';
   // Remove existing punctuation before adding new ones
   const cleanWord = word.replace(/[.,;()\-/\s]/g, '');
@@ -133,7 +133,7 @@ function generateVariation(address) {
   return modifyWord(coreAddress);
 }
 
-function getRandomPrefix() {
+export function getRandomPrefix() {
   return prefixes[Math.floor(Math.random() * prefixes.length)];
 }
 
